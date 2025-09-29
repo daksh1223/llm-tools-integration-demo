@@ -5,11 +5,6 @@ import { AzureOpenAI } from "openai";
 import { Client } from "@modelcontextprotocol/sdk/client";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
-import {
-  DefaultAzureCredential,
-  getBearerTokenProvider,
-} from "@azure/identity";
-
 const scope = "https://cognitiveservices.azure.com/.default";
 
 const createADOMCPClient = async () => {
@@ -39,11 +34,6 @@ const createLocalMcpClient = async () => {
 };
 
 const getOpenAIClient = async () => {
-  const azureADTokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    scope
-  );
-
   const client = new AzureOpenAI({
     deployment: "gpt-4.1",
     apiVersion: "2025-01-01-preview",
