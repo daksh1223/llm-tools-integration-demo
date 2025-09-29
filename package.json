@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@azure/identity": "^4.12.0",
     "@modelcontextprotocol/sdk": "^1.18.2",
     "dotenv": "^17.2.2",
     "openai": "^5.23.1",
