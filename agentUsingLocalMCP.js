@@ -45,11 +45,11 @@ const getOpenAIClient = async () => {
   );
 
   const client = new AzureOpenAI({
-    azureADTokenProvider,
-    deployment: "gpt-4o",
+    deployment: "gpt-4.1",
     apiVersion: "2025-01-01-preview",
     max_tokens: 32768,
     endpoint: process.env.AZURE_TEXT_TO_TEXT_ENDPOINT,
+    apiKey: process.env.AZURE_TEXT_TO_TEXT_KEY,
   });
   return client;
 };
@@ -75,7 +75,7 @@ async function getAgentResponse(messages) {
   const openAIClient = await getOpenAIClient();
   let result = await openAIClient.chat.completions.create({
     messages,
-    model: "gpt-4o",
+    model: "gpt-4.1",
     tools: mcpTools,
   });
   while (1) {
@@ -107,7 +107,7 @@ async function getAgentResponse(messages) {
       );
       result = await openAIClient.chat.completions.create({
         messages: [...messages, message, ...toolResponses],
-        model: "o3",
+        model: "gpt-4.1",
         tools: mcpTools,
       });
     } else {
